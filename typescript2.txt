@@ -1,0 +1,88 @@
+/**
+* Name: Neil Marcellini
+* Lab/task: Lab 10
+* Date: 11/6/19
+**/
+
+Script started on 2019-11-06 23:36:37-08:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace[00m$ cd cmake-build-debug/
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ run[K[K[Kcmake .
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/neil/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ cmaek[K[Kke ..
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/neil/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ make
+[100%] Built target replace
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ ./reapl[K[K[Kplace 1 6 5
+
+USING MEMORY WITH 1 FRAMES
+REFERENCE STRING: 0 0 2 2 3 2 
+
+TESTING LRU
+0 ->    0*  
+0 ->    0<  
+2 ->    2*  
+2 ->    2<  
+3 ->    3*  
+2 ->    2*  
+
+Number of page faults using LRU: 4
+
+TESTING OPT
+0 ->    0*  
+0 ->    0<  
+2 ->    2*  
+2 ->    2<  
+3 ->    3*  
+2 ->    2*  
+
+Number of page faults using OPT: 4.
+
+Quality Ratio LRU vs. OPT: 1.00
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ ./reap[K[Kplace 1 1 1
+
+USING MEMORY WITH 1 FRAMES
+REFERENCE STRING: 1 
+
+TESTING LRU
+1 ->    1*  
+
+Number of page faults using LRU: 1
+
+TESTING OPT
+1 ->    1*  
+
+Number of page faults using OPT: 1.
+
+Quality Ratio LRU vs. OPT: 1.00
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ ./reaplc[K[K[K[Kplea[K[Kace 2 5 3
+
+USING MEMORY WITH 2 FRAMES
+REFERENCE STRING: 1 0 0 3 0 
+
+TESTING LRU
+1 ->    1*  
+0 ->    0   1*  
+0 ->    0<  1   
+3 ->    3   0*  
+0 ->    0<  3   
+
+Number of page faults using LRU: 3
+
+TESTING OPT
+1 ->    1*  -1   
+0 ->    1   0*  
+0 ->    1   0<  
+3 ->    3*  0   
+0 ->    3   0<  
+
+Number of page faults using OPT: 3.
+
+Quality Ratio LRU vs. OPT: 1.00
+]0;neil@neil-VirtualBox: ~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[01;32mneil@neil-VirtualBox[00m:[01;34m~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug[00m$ exit
+exit
+
+Script done on 2019-11-06 23:38:01-08:00 [COMMAND_EXIT_CODE="0"]

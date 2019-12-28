@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/replace.dir/src/lruList.c.o CMakeFiles/replace.dir/src/optArray.c.o CMakeFiles/replace.dir/src/replace.c.o  -o replace 

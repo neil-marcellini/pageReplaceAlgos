@@ -1,0 +1,347 @@
+/**
+* Name: Neil Marcellini
+* Lab/task: Lab 10
+* Date: 11/6/19
+**/
+Script started on 2019-11-06 23:27:51-08:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace$ cd cmake-build-debug/
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ cmake ..
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/neil/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ make
+[100%] Built target replace
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ ./replace 4 20
+
+USING MEMORY WITH 4 FRAMES
+6
+1
+0
+7
+8
+0
+3
+1
+0
+3
+4
+1
+6
+8
+1
+0
+8
+6
+4
+1
+REFERENCE STRING: 6 1 0 7 8 0 3 1 0 3 4 1 6 8 1 0 8 6 4 1
+
+TESTING LRU
+6 ->	6*
+1 ->	1   6*
+0 ->	0   1	6*
+7 ->	7   0	1   6*
+8 ->	8   7	0   1*
+0 ->	0<  8	7   1
+3 ->	3   0	8   7*
+1 ->	1   3	0   8*
+0 ->	0<  1	3   8
+3 ->	3<  0	1   8
+4 ->	4   3	0   1*
+1 ->	1<  4	3   0
+6 ->	6   1	4   3*
+8 ->	8   6	1   4*
+1 ->	1<  8	6   4
+0 ->	0   1	8   6*
+8 ->	8<  0	1   6
+6 ->	6<  8	0   1
+4 ->	4   6	8   0*
+1 ->	1   4	6   8*
+
+Number of page faults using LRU: 13
+
+TESTING OPT
+6 ->	6*  -1	 -1   -1
+1 ->	6   1*	-1   -1
+0 ->	6   1	0*  -1
+7 ->	6   1	0   7*
+8 ->	6   1	0   8*
+0 ->	6   1	0<  8
+3 ->	6   1	0   3*
+1 ->	6   1<	0   3
+0 ->	6   1	0<  3
+3 ->	6   1	0   3<
+4 ->	6   1	0   4*
+1 ->	6   1<	0   4
+6 ->	6<  1	0   4
+8 ->	6   1	0   8*
+1 ->	6   1<	0   8
+0 ->	6   1	0<  8
+8 ->	6   1	0   8<
+6 ->	6<  1	0   8
+4 ->	4*  1	0   8
+1 ->	4   1<	0   8
+
+Number of page faults using OPT: 9.
+
+Quality Ratio LRU vs. OPT: 1.44
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ ./replace 4 20 8
+
+USING MEMORY WITH 4 FRAMES
+REFERENCE STRING: 0 1 0 5 5 0 2 5 4 4 2 0 4 4 7 4 6 4 8 6
+
+TESTING LRU
+0 ->	0*
+1 ->	1   0*
+0 ->	0<  1
+5 ->	5   0	1*
+5 ->	5<  0	1
+0 ->	0<  5	1
+2 ->	2   0	5   1*
+5 ->	5<  2	0   1
+4 ->	4   5	2   0*
+4 ->	4<  5	2   0
+2 ->	2<  4	5   0
+0 ->	0<  2	4   5
+4 ->	4<  0	2   5
+4 ->	4<  0	2   5
+7 ->	7   4	0   2*
+4 ->	4<  7	0   2
+6 ->	6   4	7   0*
+4 ->	4<  6	7   0
+8 ->	8   4	6   7*
+6 ->	6<  8	4   7
+
+Number of page faults using LRU: 8
+
+TESTING OPT
+0 ->	0*  -1	 -1   -1
+1 ->	0   1*	-1   -1
+0 ->	0<  1	-1   -1
+5 ->	0   1	5*  -1
+5 ->	0   1	5<  -1
+0 ->	0<  1	5   -1
+2 ->	0   1	5   2*
+5 ->	0   1	5<  2
+4 ->	0   4*	5   2
+4 ->	0   4<	5   2
+2 ->	0   4	5   2<
+0 ->	0<  4	5   2
+4 ->	0   4<	5   2
+4 ->	0   4<	5   2
+7 ->	7*  4	5   2
+4 ->	7   4<	5   2
+6 ->	6*  4	5   2
+4 ->	6   4<	5   2
+8 ->	6   8*	5   2
+6 ->	6<  8	5   2
+
+Number of page faults using OPT: 8.
+
+Quality Ratio LRU vs. OPT: 1.00
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ ./replace 5 10 6
+
+USING MEMORY WITH 5 FRAMES
+REFERENCE STRING: 0 5 6 2 3 1 2 1 1 3
+
+TESTING LRU
+0 ->	0*
+5 ->	5   0*
+6 ->	6   5	0*
+2 ->	2   6	5   0*
+3 ->	3   2	6   5	0*
+1 ->	1   3	2   6	5*
+2 ->	2<  1	3   6	5
+1 ->	1<  2	3   6	5
+1 ->	1<  2	3   6	5
+3 ->	3<  1	2   6	5
+
+Number of page faults using LRU: 6
+
+TESTING OPT
+0 ->	0*  -1	 -1   -1   -1
+5 ->	0   5*	-1   -1   -1
+6 ->	0   5	6*  -1	 -1
+2 ->	0   5	6   2*	-1
+3 ->	0   5	6   2	3*
+1 ->	1*  5	6   2	3
+2 ->	1   5	6   2<	3
+1 ->	1<  5	6   2	3
+1 ->	1<  5	6   2	3
+3 ->	1   5	6   2	3<
+
+Number of page faults using OPT: 6.
+
+Quality Ratio LRU vs. OPT: 1.00
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ ./replace 3 20 7
+
+USING MEMORY WITH 3 FRAMES
+REFERENCE STRING: 0 4 1 6 4 3 5 3 3 6 6 2 1 7 7 6 3 6 7 0
+
+TESTING LRU
+0 ->	0*
+4 ->	4   0*
+1 ->	1   4	0*
+6 ->	6   1	4*
+4 ->	4<  6	1
+3 ->	3   4	6*
+5 ->	5   3	4*
+3 ->	3<  5	4
+3 ->	3<  5	4
+6 ->	6   3	5*
+6 ->	6<  3	5
+2 ->	2   6	3*
+1 ->	1   2	6*
+7 ->	7   1	2*
+7 ->	7<  1	2
+6 ->	6   7	1*
+3 ->	3   6	7*
+6 ->	6<  3	7
+7 ->	7<  6	3
+0 ->	0   7	6*
+
+Number of page faults using LRU: 13
+
+TESTING OPT
+0 ->	0*  -1	 -1
+4 ->	0   4*	-1
+1 ->	0   4	1*
+6 ->	6*  4	1
+4 ->	6   4<	1
+3 ->	6   3*	1
+5 ->	6   3	5*
+3 ->	6   3<	5
+3 ->	6   3<	5
+6 ->	6<  3	5
+6 ->	6<  3	5
+2 ->	6   3	2*
+1 ->	6   3	1*
+7 ->	6   3	7*
+7 ->	6   3	7<
+6 ->	6<  3	7
+3 ->	6   3<	7
+6 ->	6<  3	7
+7 ->	6   3	7<
+0 ->	0*  3	7
+
+Number of page faults using OPT: 10.
+
+Quality Ratio LRU vs. OPT: 1.30
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ ./replace 8 50 9
+
+USING MEMORY WITH 8 FRAMES
+REFERENCE STRING: 0 3 7 3 4 5 9 2 9 8 0 4 1 4 5 6 9 0 5 1 6 1 9 1 8 8 8 4 7 3 4 9 6 1 2 3 7 1 7 6 1 7 2 4 2 7 3 3 8 0
+
+TESTING LRU
+0 ->	0*
+3 ->	3   0*
+7 ->	7   3	0*
+3 ->	3<  7	0
+4 ->	4   3	7   0*
+5 ->	5   4	3   7	0*
+9 ->	9   5	4   3	7   0*
+2 ->	2   9	5   4	3   7	0*
+9 ->	9<  2	5   4	3   7	0
+8 ->	8   9	2   5	4   3	7   0*
+0 ->	0<  8	9   2	5   4	3   7
+4 ->	4<  0	8   9	2   5	3   7
+1 ->	1   4	0   8	9   2	5   3*
+4 ->	4<  1	0   8	9   2	5   3
+5 ->	5<  4	1   0	8   9	2   3
+6 ->	6   5	4   1	0   8	9   2*
+9 ->	9<  6	5   4	1   0	8   2
+0 ->	0<  9	6   5	4   1	8   2
+5 ->	5<  0	9   6	4   1	8   2
+1 ->	1<  5	0   9	6   4	8   2
+6 ->	6<  1	5   0	9   4	8   2
+1 ->	1<  6	5   0	9   4	8   2
+9 ->	9<  1	6   5	0   4	8   2
+1 ->	1<  9	6   5	0   4	8   2
+8 ->	8<  1	9   6	5   0	4   2
+8 ->	8<  1	9   6	5   0	4   2
+8 ->	8<  1	9   6	5   0	4   2
+4 ->	4<  8	1   9	6   5	0   2
+7 ->	7   4	8   1	9   6	5   0*
+3 ->	3   7	4   8	1   9	6   5*
+4 ->	4<  3	7   8	1   9	6   5
+9 ->	9<  4	3   7	8   1	6   5
+6 ->	6<  9	4   3	7   8	1   5
+1 ->	1<  6	9   4	3   7	8   5
+2 ->	2   1	6   9	4   3	7   8*
+3 ->	3<  2	1   6	9   4	7   8
+7 ->	7<  3	2   1	6   9	4   8
+1 ->	1<  7	3   2	6   9	4   8
+7 ->	7<  1	3   2	6   9	4   8
+6 ->	6<  7	1   3	2   9	4   8
+1 ->	1<  6	7   3	2   9	4   8
+7 ->	7<  1	6   3	2   9	4   8
+2 ->	2<  7	1   6	3   9	4   8
+4 ->	4<  2	7   1	6   3	9   8
+2 ->	2<  4	7   1	6   3	9   8
+7 ->	7<  2	4   1	6   3	9   8
+3 ->	3<  7	2   4	1   6	9   8
+3 ->	3<  7	2   4	1   6	9   8
+8 ->	8<  3	7   2	4   1	6   9
+0 ->	0   8	3   7	2   4	1   6*
+
+Number of page faults using LRU: 14
+
+TESTING OPT
+0 ->	0*  -1	 -1   -1   -1	-1   -1   -1
+3 ->	0   3*	-1   -1   -1   -1   -1	 -1
+7 ->	0   3	7*  -1	 -1   -1   -1	-1
+3 ->	0   3<	7   -1	 -1   -1   -1	-1
+4 ->	0   3	7   4*	-1   -1   -1   -1
+5 ->	0   3	7   4	5*  -1	 -1   -1
+9 ->	0   3	7   4	5   9*	-1   -1
+2 ->	0   3	7   4	5   9	2*  -1
+9 ->	0   3	7   4	5   9<	2   -1
+8 ->	0   3	7   4	5   9	2   8*
+0 ->	0<  3	7   4	5   9	2   8
+4 ->	0   3	7   4<	5   9	2   8
+1 ->	0   3	7   4	5   9	1*  8
+4 ->	0   3	7   4<	5   9	1   8
+5 ->	0   3	7   4	5<  9	1   8
+6 ->	0   6*	7   4	5   9	1   8
+9 ->	0   6	7   4	5   9<	1   8
+0 ->	0<  6	7   4	5   9	1   8
+5 ->	0   6	7   4	5<  9	1   8
+1 ->	0   6	7   4	5   9	1<  8
+6 ->	0   6<	7   4	5   9	1   8
+1 ->	0   6	7   4	5   9	1<  8
+9 ->	0   6	7   4	5   9<	1   8
+1 ->	0   6	7   4	5   9	1<  8
+8 ->	0   6	7   4	5   9	1   8<
+8 ->	0   6	7   4	5   9	1   8<
+8 ->	0   6	7   4	5   9	1   8<
+4 ->	0   6	7   4<	5   9	1   8
+7 ->	0   6	7<  4	5   9	1   8
+3 ->	0   6	7   4	3*  9	1   8
+4 ->	0   6	7   4<	3   9	1   8
+9 ->	0   6	7   4	3   9<	1   8
+6 ->	0   6<	7   4	3   9	1   8
+1 ->	0   6	7   4	3   9	1<  8
+2 ->	0   6	7   4	3   2*	1   8
+3 ->	0   6	7   4	3<  2	1   8
+7 ->	0   6	7<  4	3   2	1   8
+1 ->	0   6	7   4	3   2	1<  8
+7 ->	0   6	7<  4	3   2	1   8
+6 ->	0   6<	7   4	3   2	1   8
+1 ->	0   6	7   4	3   2	1<  8
+7 ->	0   6	7<  4	3   2	1   8
+2 ->	0   6	7   4	3   2<	1   8
+4 ->	0   6	7   4<	3   2	1   8
+2 ->	0   6	7   4	3   2<	1   8
+7 ->	0   6	7<  4	3   2	1   8
+3 ->	0   6	7   4	3<  2	1   8
+3 ->	0   6	7   4	3<  2	1   8
+8 ->	0   6	7   4	3   2	1   8<
+0 ->	0<  6	7   4	3   2	1   8
+
+Number of page faults using OPT: 12.
+
+Quality Ratio LRU vs. OPT: 1.17
+neil@neil-VirtualBox:~/Desktop/comp362/MarcelliniNeilLab10/replace/cmake-build-debug$ exit
+exit
+
+Script done on 2019-11-06 23:32:07-08:00 [COMMAND_EXIT_CODE="0"]
